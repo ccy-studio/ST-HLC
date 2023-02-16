@@ -55,7 +55,7 @@ add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32G030xx)
 
 file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32G030F6PX_FLASH.ld Core/Inc/sg90.h Core/Src/sg90.c)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32G030F6PX_FLASH.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m0 -mthumb -mthumb-interwork)
