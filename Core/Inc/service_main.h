@@ -7,6 +7,7 @@
 
 #include "main.h"
 
+void Main_Init();
 void Main_RUN();
 
 #endif //ST_HLC_SERVICE_MAIN_H

@@ -10,9 +10,27 @@ uint16_t IRvalue = 0;    // 键码值
 uint8_t IRcount = 0;     // 接收计数器
 uint8_t IRstatus = 0;    // 接收状态标志
 
+volatile int ledGroupOpenState = 0;
+volatile int sg90OpenState = 0;
 
+void handlerSG90(int openState);
+
+void handlerLEDGroup(int openState);
+
+void handlerSmallLED(int openState);
+
+
+void Main_Init() {
+    SG90_init();
+}
+
+
+/**
+ * 程序运行入口
+ */
 void Main_RUN() {
-
+    handlerLEDGroup(ledGroupOpenState);
+    handlerSG90(sg90OpenState);
 }
 
 
@@ -47,5 +65,29 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
                 IRvalue = 0;
             }
         }
+    }
+}
+
+void handlerSmallLED(int openState) {
+    if (openState) {
+        HAL_GPIO_WritePin(S_LED_GPIO_Port, S_LED_Pin, GPIO_PIN_SET);
+    } else {
+        HAL_GPIO_WritePin(S_LED_GPIO_Port, S_LED_Pin, GPIO_PIN_RESET);
+    }
+}
+
+void handlerLEDGroup(int openState) {
+    if (openState) {
+        HAL_GPIO_WritePin(L_LED_GPIO_Port, L_LED_Pin, GPIO_PIN_SET);
+    } else {
+        HAL_GPIO_WritePin(L_LED_GPIO_Port, L_LED_Pin, GPIO_PIN_RESET);
+    }
+}
+
+void handlerSG90(int openState) {
+    if (openState) {
+        SG90_rotate_to(25);
+    } else {
+        SG90_rotate_to(0);
     }
 }
