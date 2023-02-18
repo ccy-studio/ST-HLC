@@ -67,7 +67,6 @@ void Error_Handler(void);
 #define L_LED_GPIO_Port GPIOA
 #define VS1838B_Pin GPIO_PIN_12
 #define VS1838B_GPIO_Port GPIOA
-#define VS1838B_EXTI_IRQn EXTI4_15_IRQn
 #define S_LED_Pin GPIO_PIN_3
 #define S_LED_GPIO_Port GPIOB
 
